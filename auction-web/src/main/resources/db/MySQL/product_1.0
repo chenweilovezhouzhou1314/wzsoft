@@ -1,0 +1,15 @@
+-- sql script product1.0
+
+
+-- CREATE TABLE product_version
+CREATE TABLE product_version (
+  fGuid     varchar(64) NOT NULL,
+  fVersion  varchar(64) NOT NULL,
+  fVersion2 varchar(64) DEFAULT NULL,
+  fVersion3 varchar(64) DEFAULT NULL,
+  fTimeStr  varchar(64) DEFAULT NULL,
+  fComment  varchar(512) DEFAULT NULL,
+  PRIMARY KEY (fGuid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品版本信息表';
+
+insert into product_version(fGuid, fVersion, fVersion2) values('000', '1.1', '1.1');

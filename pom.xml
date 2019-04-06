@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cw.auction</groupId>
+  <artifactId>auction</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>auction</name>
+  <description>拍卖系统</description>
+  <packaging>pom</packaging>
+  
+  
+  <modules>
+  	<module>auction-utils</module>
+  	<module>auction-entity</module>
+  	<module>auction-framework</module>
+  	<module>auction-dao</module>
+  	<module>auction-service</module>
+  	<module>auction-web</module>
+  </modules>
+</project>

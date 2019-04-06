@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+            http://www.springframework.org/schema/tx
+             http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+     <!-- spring+mybatis时会出现Cannot load JDBC driver class ${jdbc.driverClassName}'方法 解决方案
+             去掉 开头的 default-autowire="byName"-->       
+
+	<!-- 1.配置sqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	     <!-- 自动扫描Mapper文件 -->
+	     <property name="mapperLocations" value="classpath*:com/cw/auction/mapper/**/*Mapper.xml" />
+	     <!-- 配置动态数据源 切换数据源用-->
+	     <property name="dataSource" ref="dynamicDataSource" />
+	     <!-- 配置插件位置 -->
+	     <property name="configLocation" value="classpath:xml/spring_mybatis_cfg.xml" />
+	     <!-- 配置分页插件-->
+	     <property name="plugins">
+			<list>
+				<bean class="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+					<property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"></property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 2.配置sqlSession -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+         <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+    <!-- 3.定义所要扫描的Mapper配置文件包路径,多个包用逗号或者分号隔开 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+         <property name="basePackage" value="com.cw.auction.mapper" />
+         <property name="markerInterface" value="com.cw.auction.framework.baseentity.SqlMapper" />
+    </bean>
+</beans>

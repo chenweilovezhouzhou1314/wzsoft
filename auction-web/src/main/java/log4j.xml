@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE   log4j:configuration   SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+     
+	<appender name="consoleApp" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c (%F:%L) -> %m%n" />
+		</layout>
+		 <!--过滤器设置输出的级别-->  
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="FATAL" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	<appender name="debugApp" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- 设置日志输出文件名 --> 
+		<param name="File" value="C://auctionlogs/debug/debug.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p (%c:%L) -> %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="debug" />
+			<param name="levelMax" value="debug" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	<!-- 输出日志到文件  文件大小到达指定尺寸的时候产生一个新的文件 --> 
+	<appender name="infoApp" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="C://auctionlogs/info/info.log" />
+		<param name="MaxFileSize" value="5120KB" />
+		<param name="MaxBackupIndex" value="100" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p (%c:%L) -> %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="info" />
+			<param name="levelMax" value="info" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	<!-- 输出日志到文件  每天一个文件 -->  
+	<appender name="errorApp" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="C://auctionlogs/error/error.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p (%c:%L) -> %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="error" />
+			<param name="levelMax" value="error" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	<!--定义全局的日志输出级别,但是在输出目的地的配置中配置的具体输出级别优先级高于全局定义的优先级。 -->  
+	<root>
+		<level value="debug" />
+		<appender-ref ref="consoleApp" />
+		<appender-ref ref="debugApp" />
+		<appender-ref ref="infoApp" />
+		<appender-ref ref="errorApp" />
+	</root>
+</log4j:configuration>  

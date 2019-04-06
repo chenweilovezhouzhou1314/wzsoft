@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.cw.auction</groupId>
+		<artifactId>auction</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>auction-dao</artifactId>
+	<name>auction-dao</name>
+	<description>auction-dao</description>
+	<packaging>jar</packaging>
+
+	<!-- 依赖 -->
+	<dependencies>
+		<!-- 依赖entity配置 -->
+		<dependency>
+			<groupId>com.cw.auction</groupId>
+			<artifactId>auction-entity</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- 依赖utils配置 -->
+		<dependency>
+			<groupId>com.cw.auction</groupId>
+			<artifactId>auction-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+
+</project>
